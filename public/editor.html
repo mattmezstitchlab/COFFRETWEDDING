@@ -1,0 +1,2109 @@
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD WEDDING MAGAZINE — FRANCE</title>
+<script src="/archive/three.min.js"></script>
+<style>
+:root {
+--dmc-text: #1a1a2e;
+--dmc-image: #e8b4b8;
+--dmc-video: #a8d8ea;
+--dmc-audio: #c3aed6;
+--dmc-music: #f6d6ad;
+--dmc-place: #b5cda3;
+--dmc-person: #f4a4a0;
+--dmc-professional: #87c4c4;
+--dmc-event: #f2c57c;
+--dmc-document: #d4a5a5;
+--dmc-relation: #95b8d1;
+--dmc-validated: #6b9080;
+--dmc-to-confirm: #c4a35a;
+--bg-primary: #fafaf8;
+--bg-secondary: #f0efe9;
+--bg-dark: #1a1a2e;
+--text-primary: #1a1a2e;
+--text-secondary: #4a4a5a;
+--text-muted: #8a8a9a;
+--accent: #2c2c3e;
+--gold: #c9a96e;
+--border: #e0dfd8;
+--shadow: rgba(26, 26, 46, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Georgia', 'Times New Roman', serif;
+background: var(--bg-primary);
+color: var(--text-primary);
+overflow: hidden;
+height: 100vh;
+}
+
+/* HEADER */
+.wmm-header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 56px;
+background: var(--bg-dark);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 24px;
+z-index: 1000;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.wmm-logo {
+color: #fff;
+font-size: 13px;
+letter-spacing: 3px;
+text-transform: uppercase;
+font-weight: 400;
+}
+
+.wmm-logo span {
+color: var(--gold);
+}
+
+.wmm-nav {
+display: flex;
+gap: 2px;
+}
+
+.wmm-nav-btn {
+background: transparent;
+border: none;
+color: rgba(255,255,255,0.5);
+font-size: 11px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+padding: 8px 14px;
+cursor: pointer;
+transition: all 0.3s;
+font-family: inherit;
+border-radius: 3px;
+}
+
+.wmm-nav-btn:hover, .wmm-nav-btn.active {
+color: #fff;
+background: rgba(255,255,255,0.08);
+}
+
+.wmm-nav-btn.active {
+border-bottom: 2px solid var(--gold);
+}
+
+/* MAIN LAYOUT */
+.wmm-main {
+position: fixed;
+top: 56px;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+}
+
+/* VIEWS */
+.wmm-view {
+flex: 1;
+position: relative;
+display: none;
+overflow: hidden;
+}
+
+.wmm-view.active {
+display: block;
+}
+
+/* 3D VIEW */
+#view-3d canvas {
+width: 100% !important;
+height: 100% !important;
+}
+
+.view-3d-overlay {
+position: absolute;
+top: 20px;
+left: 20px;
+color: rgba(255,255,255,0.7);
+font-size: 11px;
+letter-spacing: 1px;
+pointer-events: none;
+}
+
+.view-3d-overlay h2 {
+font-size: 14px;
+color: #fff;
+margin-bottom: 4px;
+font-weight: 400;
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+
+.view-3d-info {
+position: absolute;
+bottom: 20px;
+left: 20px;
+right: 320px;
+background: rgba(26,26,46,0.92);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255,255,255,0.08);
+border-radius: 6px;
+padding: 16px 20px;
+color: #fff;
+display: none;
+}
+
+.view-3d-info.visible { display: block; }
+
+.view-3d-info h3 {
+font-size: 13px;
+font-weight: 400;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 8px;
+color: var(--gold);
+}
+
+.view-3d-info p {
+font-size: 12px;
+line-height: 1.6;
+color: rgba(255,255,255,0.7);
+}
+
+/* SIDEBAR */
+.wmm-sidebar {
+width: 300px;
+background: var(--bg-secondary);
+border-left: 1px solid var(--border);
+overflow-y: auto;
+padding: 20px;
+display: none;
+}
+
+.wmm-sidebar.visible { display: block; }
+
+.sidebar-section {
+margin-bottom: 20px;
+}
+
+.sidebar-section h4 {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--text-muted);
+margin-bottom: 10px;
+padding-bottom: 6px;
+border-bottom: 1px solid var(--border);
+}
+
+.sidebar-item {
+padding: 8px 10px;
+margin-bottom: 4px;
+border-radius: 4px;
+cursor: pointer;
+font-size: 12px;
+transition: all 0.2s;
+border-left: 3px solid transparent;
+}
+
+.sidebar-item:hover {
+background: rgba(0,0,0,0.03);
+}
+
+.sidebar-item.selected {
+background: rgba(201,169,110,0.08);
+border-left-color: var(--gold);
+}
+
+/* GRID VIEW */
+#view-grid {
+overflow-y: auto;
+padding: 30px;
+background: var(--bg-primary);
+}
+
+.grid-header {
+margin-bottom: 30px;
+}
+
+.grid-header h2 {
+font-size: 24px;
+font-weight: 400;
+letter-spacing: 1px;
+}
+
+.grid-header p {
+font-size: 12px;
+color: var(--text-muted);
+margin-top: 4px;
+}
+
+.grid-months {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 16px;
+}
+
+.grid-month {
+background: #fff;
+border: 1px solid var(--border);
+border-radius: 6px;
+padding: 16px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.grid-month:hover {
+box-shadow: 0 4px 20px var(--shadow);
+transform: translateY(-2px);
+}
+
+.grid-month h3 {
+font-size: 12px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 8px;
+color: var(--text-secondary);
+}
+
+.grid-month .wedding-title {
+font-size: 14px;
+font-weight: 400;
+margin-bottom: 4px;
+}
+
+.grid-month .wedding-place {
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.grid-days {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 2px;
+margin-top: 10px;
+}
+
+.grid-day {
+width: 100%;
+aspect-ratio: 1;
+border-radius: 2px;
+background: var(--bg-secondary);
+font-size: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text-muted);
+}
+
+.grid-day.has-wedding {
+background: var(--gold);
+color: #fff;
+font-weight: 600;
+}
+
+.grid-day.demo {
+background: rgba(201,169,110,0.3);
+}
+
+/* TIMELINE VIEW */
+#view-timeline {
+overflow-y: auto;
+padding: 30px;
+background: var(--bg-primary);
+}
+
+.timeline-container {
+position: relative;
+padding-left: 60px;
+}
+
+.timeline-line {
+position: absolute;
+left: 30px;
+top: 0;
+bottom: 0;
+width: 1px;
+background: var(--border);
+}
+
+.timeline-hour {
+position: relative;
+padding: 12px 0 12px 20px;
+border-bottom: 1px solid rgba(0,0,0,0.03);
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.timeline-hour:hover {
+background: rgba(201,169,110,0.04);
+}
+
+.timeline-hour::before {
+content: '';
+position: absolute;
+left: -34px;
+top: 50%;
+transform: translateY(-50%);
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: var(--border);
+}
+
+.timeline-hour.has-content::before {
+background: var(--gold);
+}
+
+.timeline-hour .hour-label {
+position: absolute;
+left: -60px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 10px;
+color: var(--text-muted);
+width: 24px;
+text-align: right;
+}
+
+.timeline-hour h4 {
+font-size: 13px;
+font-weight: 400;
+margin-bottom: 2px;
+}
+
+.timeline-hour p {
+font-size: 11px;
+color: var(--text-muted);
+}
+
+/* MAP VIEW */
+#view-map {
+background: #e8e6df;
+position: relative;
+}
+
+.map-container {
+width: 100%;
+height: 100%;
+position: relative;
+}
+
+.map-svg {
+width: 100%;
+height: 100%;
+}
+
+.map-marker {
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.map-marker:hover circle {
+r: 8;
+fill: var(--gold);
+}
+
+.map-tooltip {
+position: absolute;
+background: var(--bg-dark);
+color: #fff;
+padding: 12px 16px;
+border-radius: 6px;
+font-size: 12px;
+pointer-events: none;
+display: none;
+z-index: 100;
+max-width: 200px;
+}
+
+.map-tooltip.visible { display: block; }
+
+/* RELATIONS VIEW */
+#view-relations {
+background: var(--bg-primary);
+overflow: hidden;
+}
+
+.relations-canvas {
+width: 100%;
+height: 100%;
+}
+
+/* MAGAZINE VIEW */
+#view-magazine {
+overflow-y: auto;
+background: #fff;
+}
+
+.magazine-page {
+max-width: 800px;
+margin: 0 auto;
+padding: 60px 40px;
+}
+
+.mag-hero {
+position: relative;
+height: 70vh;
+background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+margin: -60px -40px 60px;
+padding: 60px 40px;
+color: #fff;
+text-align: center;
+}
+
+.mag-hero-kicker {
+font-size: 11px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 20px;
+}
+
+.mag-hero h1 {
+font-size: 48px;
+font-weight: 400;
+line-height: 1.2;
+margin-bottom: 16px;
+max-width: 600px;
+}
+
+.mag-hero .subtitle {
+font-size: 16px;
+color: rgba(255,255,255,0.6);
+font-style: italic;
+}
+
+.mag-section {
+margin-bottom: 48px;
+}
+
+.mag-surtitre {
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 8px;
+}
+
+.mag-title {
+font-size: 32px;
+font-weight: 400;
+line-height: 1.3;
+margin-bottom: 12px;
+}
+
+.mag-chapo {
+font-size: 16px;
+line-height: 1.8;
+color: var(--text-secondary);
+font-style: italic;
+margin-bottom: 24px;
+padding-bottom: 24px;
+border-bottom: 1px solid var(--border);
+}
+
+.mag-body p {
+font-size: 15px;
+line-height: 1.9;
+margin-bottom: 16px;
+color: var(--text-secondary);
+}
+
+.mag-quote {
+font-size: 22px;
+font-style: italic;
+color: var(--text-primary);
+padding: 30px 0;
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+margin: 30px 0;
+text-align: center;
+line-height: 1.6;
+}
+
+.mag-gallery {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 4px;
+margin: 30px 0;
+}
+
+.mag-gallery-item {
+aspect-ratio: 1;
+background: var(--bg-secondary);
+border-radius: 2px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 10px;
+color: var(--text-muted);
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.mag-programme {
+background: var(--bg-secondary);
+padding: 30px;
+border-radius: 6px;
+margin: 30px 0;
+}
+
+.mag-programme h3 {
+font-size: 12px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 16px;
+}
+
+.mag-programme-item {
+display: flex;
+gap: 16px;
+padding: 8px 0;
+border-bottom: 1px solid var(--border);
+font-size: 13px;
+}
+
+.mag-programme-item .time {
+color: var(--gold);
+min-width: 50px;
+font-size: 12px;
+}
+
+.mag-info-box {
+border: 1px solid var(--border);
+padding: 24px;
+border-radius: 6px;
+margin: 30px 0;
+}
+
+.mag-info-box h4 {
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--text-muted);
+margin-bottom: 12px;
+}
+
+.mag-info-box p {
+font-size: 13px;
+line-height: 1.7;
+color: var(--text-secondary);
+}
+
+/* EDITOR */
+#view-editor {
+display: none;
+overflow: hidden;
+}
+
+#view-editor.active {
+display: flex;
+}
+
+.editor-sidebar {
+width: 280px;
+background: var(--bg-dark);
+color: #fff;
+overflow-y: auto;
+padding: 20px;
+border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.editor-sidebar h3 {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: rgba(255,255,255,0.4);
+margin-bottom: 12px;
+}
+
+.editor-tree-item {
+padding: 6px 10px;
+font-size: 12px;
+color: rgba(255,255,255,0.6);
+cursor: pointer;
+border-radius: 3px;
+margin-bottom: 2px;
+transition: all 0.2s;
+}
+
+.editor-tree-item:hover {
+background: rgba(255,255,255,0.05);
+color: #fff;
+}
+
+.editor-tree-item.selected {
+background: rgba(201,169,110,0.2);
+color: var(--gold);
+}
+
+.editor-tree-item.level-1 { padding-left: 20px; }
+.editor-tree-item.level-2 { padding-left: 30px; }
+.editor-tree-item.level-3 { padding-left: 40px; }
+
+.editor-main {
+flex: 1;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+
+.editor-toolbar {
+height: 44px;
+background: var(--bg-secondary);
+border-bottom: 1px solid var(--border);
+display: flex;
+align-items: center;
+padding: 0 16px;
+gap: 8px;
+}
+
+.editor-toolbar-btn {
+background: #fff;
+border: 1px solid var(--border);
+padding: 5px 12px;
+font-size: 11px;
+border-radius: 3px;
+cursor: pointer;
+font-family: inherit;
+transition: all 0.2s;
+}
+
+.editor-toolbar-btn:hover {
+border-color: var(--gold);
+}
+
+.editor-canvas {
+flex: 1;
+padding: 40px;
+overflow-y: auto;
+background: var(--bg-primary);
+}
+
+.editor-field {
+margin-bottom: 16px;
+}
+
+.editor-field label {
+display: block;
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(--text-muted);
+margin-bottom: 6px;
+}
+
+.editor-field input,
+.editor-field textarea,
+.editor-field select {
+width: 100%;
+padding: 10px 12px;
+border: 1px solid var(--border);
+border-radius: 4px;
+font-family: inherit;
+font-size: 13px;
+background: #fff;
+transition: border-color 0.2s;
+}
+
+.editor-field input:focus,
+.editor-field textarea:focus {
+outline: none;
+border-color: var(--gold);
+}
+
+.editor-field textarea {
+min-height: 80px;
+resize: vertical;
+}
+
+.editor-preview {
+width: 320px;
+background: #fff;
+border-left: 1px solid var(--border);
+overflow-y: auto;
+padding: 20px;
+}
+
+.editor-preview h4 {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--text-muted);
+margin-bottom: 12px;
+}
+
+/* DMC BADGES */
+.dmc-badge {
+display: inline-block;
+padding: 2px 6px;
+border-radius: 2px;
+font-size: 9px;
+letter-spacing: 1px;
+text-transform: uppercase;
+font-family: monospace;
+}
+
+.dmc-demo { background: rgba(201,169,110,0.15); color: var(--dmc-to-confirm); }
+.dmc-validated { background: rgba(107,144,128,0.15); color: var(--dmc-validated); }
+.dmc-text { background: rgba(26,26,46,0.08); color: var(--dmc-text); }
+.dmc-image { background: rgba(232,180,184,0.2); color: #8b4a50; }
+.dmc-video { background: rgba(168,216,234,0.2); color: #3a7a9a; }
+.dmc-place { background: rgba(181,205,163,0.2); color: #4a6a3a; }
+.dmc-person { background: rgba(244,164,160,0.2); color: #8a3a38; }
+.dmc-professional { background: rgba(135,196,196,0.2); color: #3a6a6a; }
+
+/* LOADING */
+.wmm-loading {
+position: fixed;
+inset: 0;
+background: var(--bg-dark);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 9999;
+transition: opacity 0.8s;
+}
+
+.wmm-loading.hidden {
+opacity: 0;
+pointer-events: none;
+}
+
+.wmm-loading h1 {
+color: #fff;
+font-size: 14px;
+letter-spacing: 4px;
+text-transform: uppercase;
+font-weight: 400;
+margin-bottom: 30px;
+}
+
+.wmm-loading-bar {
+width: 200px;
+height: 1px;
+background: rgba(255,255,255,0.1);
+position: relative;
+overflow: hidden;
+}
+
+.wmm-loading-bar::after {
+content: '';
+position: absolute;
+left: -50%;
+width: 50%;
+height: 100%;
+background: var(--gold);
+animation: loadBar 1.5s ease infinite;
+}
+
+@keyframes loadBar {
+0% { left: -50%; }
+100% { left: 100%; }
+}
+
+.wmm-loading-text {
+color: rgba(255,255,255,0.3);
+font-size: 11px;
+margin-top: 16px;
+letter-spacing: 1px;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+position: absolute;
+top: 12px;
+left: 20px;
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 11px;
+color: rgba(255,255,255,0.5);
+z-index: 10;
+}
+
+.breadcrumb span {
+cursor: pointer;
+transition: color 0.2s;
+}
+
+.breadcrumb span:hover {
+color: #fff;
+}
+
+.breadcrumb .sep {
+color: rgba(255,255,255,0.2);
+}
+
+/* STATUS BAR */
+.status-bar {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 28px;
+background: rgba(26,26,46,0.95);
+display: flex;
+align-items: center;
+padding: 0 16px;
+font-size: 10px;
+color: rgba(255,255,255,0.4);
+letter-spacing: 0.5px;
+gap: 20px;
+z-index: 10;
+}
+
+.status-dot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: var(--dmc-validated);
+}
+
+/* MONTH NAV */
+.month-nav {
+position: absolute;
+top: 12px;
+right: 20px;
+display: flex;
+gap: 4px;
+z-index: 10;
+}
+
+.month-nav-btn {
+background: rgba(26,26,46,0.7);
+border: 1px solid rgba(255,255,255,0.1);
+color: rgba(255,255,255,0.5);
+font-size: 9px;
+padding: 4px 8px;
+cursor: pointer;
+border-radius: 3px;
+font-family: inherit;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: all 0.2s;
+}
+
+.month-nav-btn:hover, .month-nav-btn.active {
+background: rgba(201,169,110,0.3);
+color: #fff;
+border-color: var(--gold);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+.wmm-sidebar { display: none !important; }
+.grid-months { grid-template-columns: repeat(2, 1fr); }
+.mag-hero h1 { font-size: 28px; }
+.editor-sidebar { width: 200px; }
+.editor-preview { display: none; }
+}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+
+<div class="wmm-loading" id="loading">
+<h1>World Wedding Magazine</h1>
+<div class="wmm-loading-bar"></div>
+<div class="wmm-loading-text">Construction de l'atelier éditorial…</div>
+</div>
+
+<header class="wmm-header">
+<div class="wmm-logo">World Wedding <span>Magazine</span> — France</div>
+<nav class="wmm-nav">
+<button class="wmm-nav-btn active" data-view="3d">3D Atelier</button>
+<button class="wmm-nav-btn" data-view="grid">Grille</button>
+<button class="wmm-nav-btn" data-view="timeline">Timeline</button>
+<button class="wmm-nav-btn" data-view="map">Carte</button>
+<button class="wmm-nav-btn" data-view="relations">Relations</button>
+<button class="wmm-nav-btn" data-view="magazine">Magazine</button>
+<button class="wmm-nav-btn" data-view="editor">Éditeur</button>
+</nav>
+</header>
+
+<main class="wmm-main">
+<!-- 3D VIEW -->
+<div class="wmm-view active" id="view-3d">
+<div class="breadcrumb" id="breadcrumb-3d">
+<span onclick="WMM.resetView()">France</span>
+</div>
+<div class="month-nav" id="month-nav-3d"></div>
+<div class="view-3d-overlay">
+<h2>Atelier 3D</h2>
+<p>365 jours × 24 heures = 8 760 positions éditoriales</p>
+</div>
+<div class="view-3d-info" id="cell-info">
+<h3 id="cell-info-title"></h3>
+<p id="cell-info-desc"></p>
+</div>
+<div class="status-bar">
+<span class="status-dot"></span>
+<span>8 760 cellules</span>
+<span>12 mariages DEMO</span>
+<span>Source: Données fictives</span>
+<span id="fps-counter">60 FPS</span>
+</div>
+</div>
+
+<!-- GRID VIEW -->
+<div class="wmm-view" id="view-grid">
+<div class="grid-header">
+<h2>Grille Spatio-Temporelle</h2>
+<p>365 jours × 24 positions — France 2025</p>
+</div>
+<div class="grid-months" id="grid-months"></div>
+</div>
+
+<!-- TIMELINE VIEW -->
+<div class="wmm-view" id="view-timeline">
+<div class="grid-header">
+<h2>Timeline Éditoriale</h2>
+<p id="timeline-subtitle">Sélectionnez un mariage</p>
+</div>
+<div class="timeline-container" id="timeline-container">
+<div class="timeline-line"></div>
+</div>
+</div>
+
+<!-- MAP VIEW -->
+<div class="wmm-view" id="view-map">
+<div class="map-container" id="map-container">
+<svg class="map-svg" id="map-svg" viewBox="0 0 600 600"></svg>
+</div>
+<div class="map-tooltip" id="map-tooltip"></div>
+</div>
+
+<!-- RELATIONS VIEW -->
+<div class="wmm-view" id="view-relations">
+<canvas class="relations-canvas" id="relations-canvas"></canvas>
+</div>
+
+<!-- MAGAZINE VIEW -->
+<div class="wmm-view" id="view-magazine">
+<div class="magazine-page" id="magazine-content"></div>
+</div>
+
+<!-- EDITOR VIEW -->
+<div class="wmm-view" id="view-editor">
+<div class="editor-sidebar" id="editor-tree"></div>
+<div class="editor-main">
+<div class="editor-toolbar">
+<button class="editor-toolbar-btn" onclick="WMM.editorSave()">Sauvegarder</button>
+<button class="editor-toolbar-btn" onclick="WMM.editorPreview()">Aperçu Magazine</button>
+<button class="editor-toolbar-btn" onclick="WMM.switchView('3d')">Voir en 3D</button>
+</div>
+<div class="editor-canvas" id="editor-canvas">
+<p style="color: var(--text-muted); font-size: 13px; font-style: italic;">
+Sélectionnez une scène dans l'arbre pour commencer l'édition.
+</p>
+</div>
+</div>
+<div class="editor-preview" id="editor-preview-panel">
+<h4>Aperçu</h4>
+<div id="editor-preview-content"></div>
+</div>
+</div>
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// WORLD WEDDING MAGAZINE — DATA LAYER (Source of Truth)
+// ═══════════════════════════════════════════════════════════════
+
+const DMC = {
+TEXT: '#1a1a2e', IMAGE: '#e8b4b8', VIDEO: '#a8d8ea', AUDIO: '#c3aed6',
+MUSIC: '#f6d6ad', PLACE: '#b5cda3', PERSON: '#f4a4a0', PROFESSIONAL: '#87c4c4',
+EVENT: '#f2c57c', DOCUMENT: '#d4a5a5', RELATION: '#95b8d1',
+VALIDATED: '#6b9080', TO_CONFIRM: '#c4a35a'
+};
+
+const MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+// Generate unique IDs
+let _idCounter = 0;
+function uid(prefix = '') { return prefix + '_' + (++_idCounter) + '_' + Math.random().toString(36).substr(2,6); }
+
+// ─── PROFESSIONALS (Single instances, referenced by ID) ───
+const professionals = {
+[uid('wp')]: { id: null, type: 'wedding_planner', name: 'Claire Dubois', city: 'Paris', status: 'DEMO' },
+[uid('photo')]: { id: null, type: 'photographe', name: 'Marc Laurent', city: 'Lyon', status: 'DEMO' },
+[uid('video')]: { id: null, type: 'videaste', name: 'Sophie Martin', city: 'Bordeaux', status: 'DEMO' },
+[uid('dj')]: { id: null, type: 'dj', name: 'Thomas Bernard', city: 'Marseille', status: 'DEMO' },
+[uid('sax')]: { id: null, type: 'saxophoniste', name: 'Julien Moreau', city: 'Nice', status: 'DEMO' },
+[uid('traiteur')]: { id: null, type: 'traiteur', name: 'Maison Gourmande', city: 'Paris', status: 'DEMO' },
+[uid('fleuriste')]: { id: null, type: 'fleuriste', name: 'Atelier Floral', city: 'Annecy', status: 'DEMO' },
+[uid('deco')]: { id: null, type: 'decorateur', name: 'Studio Décor', city: 'Biarritz', status: 'DEMO' },
+[uid('officiant')]: { id: null, type: 'officiant', name: 'Père Antoine', city: 'Strasbourg', status: 'DEMO' },
+[uid('transport')]: { id: null, type: 'transporteur', name: 'Prestige Auto', city: 'Paris', status: 'DEMO' },
+};
+// Fix IDs
+Object.keys(professionals).forEach(k => { professionals[k].id = k; });
+
+// ─── PLACES ───
+const places = {
+'place_jan': { id: 'place_jan', name: 'Mairie du Village', city: 'Saint-Cirq-Lapopie', region: 'Occitanie', country: 'France', lat: 44.4736, lng: 1.6808, type: 'mairie', status: 'DEMO' },
+'place_feb': { id: 'place_feb', name: 'Hôtel Particulier Marais', city: 'Paris', region: 'Île-de-France', country: 'France', lat: 48.8566, lng: 2.3522, type: 'hotel_particulier', status: 'DEMO' },
+'place_mar': { id: 'place_mar', name: 'Domaine du Lac', city: 'Annecy', region: 'Auvergne-Rhône-Alpes', country: 'France', lat: 45.8992, lng: 6.1294, type: 'domaine', status: 'DEMO' },
+'place_apr': { id: 'place_apr', name: 'Bastide Provençale', city: 'Gordes', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', lat: 43.9114, lng: 5.2004, type: 'bastide', status: 'DEMO' },
+'place_may': { id: 'place_may', name: 'Manoir de la Côte', city: 'Dinan', region: 'Bretagne', country: 'France', lat: 48.4548, lng: -2.0500, type: 'manoir', status: 'DEMO' },
+'place_jun': { id: 'place_jun', name: 'Paillote les Pins', city: 'Porto-Vecchio', region: 'Corse', country: 'France', lat: 41.5914, lng: 9.2786, type: 'plage', status: 'DEMO' },
+'place_jul': { id: 'place_jul', name: 'Château de Beynac', city: 'Beynac-et-Cazenac', region: 'Nouvelle-Aquitaine', country: 'France', lat: 44.8378, lng: 1.1467, type: 'chateau', status: 'DEMO' },
+'place_aug': { id: 'place_aug', name: 'Villa Atlantica', city: 'Biarritz', region: 'Nouvelle-Aquitaine', country: 'France', lat: 43.4832, lng: -1.5586, type: 'villa', status: 'DEMO' },
+'place_sep': { id: 'place_sep', name: 'Château Viticole', city: 'Saint-Émilion', region: 'Nouvelle-Aquitaine', country: 'France', lat: 44.8936, lng: -0.1575, type: 'chateau_viticole', status: 'DEMO' },
+'place_oct': { id: 'place_oct', name: 'Clos Vosgien', city: 'Colmar', region: 'Grand Est', country: 'France', lat: 48.0794, lng: 7.3585, type: 'domaine', status: 'DEMO' },
+'place_nov': { id: 'place_nov', name: 'Abbaye Romane', city: 'Saint-Savin', region: 'Nouvelle-Aquitaine', country: 'France', lat: 44.4287, lng: 0.8169, type: 'abbaye', status: 'DEMO' },
+'place_dec': { id: 'place_dec', name: 'Chalet Alpin', city: 'Megève', region: 'Auvergne-Rhône-Alpes', country: 'France', lat: 45.8569, lng: 6.6178, type: 'chalet', status: 'DEMO' },
+};
+
+// ─── WEDDINGS (12 Demo) ───
+const weddings = [
+{
+id: 'wedding_jan', month: 0, day: 18, title: 'Mariage d\'Hiver en Quercy',
+subtitle: 'L\'intimité d\'un village médiéval', surtitre: 'FRANCE · OCCITANIE',
+place: 'place_jan', ambiance: 'local, authentique, hiver',
+color: '#6b7b8d', status: 'DEMO',
+professionals: [Object.keys(professionals)[0], Object.keys(professionals)[1]],
+people: [
+{ id: uid('p'), name: 'Élodie & Pierre', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('local', 'hiver')
+},
+{
+id: 'wedding_feb', month: 1, day: 14, title: 'Saint-Valentin Parisienne',
+subtitle: 'L\'élégance au cœur du Marais', surtitre: 'FRANCE · PARIS',
+place: 'place_feb', ambiance: 'parisien, raffiné, romantique',
+color: '#c9707d', status: 'DEMO',
+professionals: [Object.keys(professionals)[0], Object.keys(professionals)[2]],
+people: [
+{ id: uid('p'), name: 'Camille & Antoine', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('parisien', 'hiver')
+},
+{
+id: 'wedding_mar', month: 2, day: 22, title: 'Éveil au Bord du Lac',
+subtitle: 'La lumière d\'Annecy au printemps', surtitre: 'FRANCE · ALPES',
+place: 'place_mar', ambiance: 'lac, montagne, printemps naissant',
+color: '#7da8c9', status: 'DEMO',
+professionals: [Object.keys(professionals)[1], Object.keys(professionals)[6]],
+people: [
+{ id: uid('p'), name: 'Léa & Mathieu', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('lac', 'printemps')
+},
+{
+id: 'wedding_apr', month: 3, day: 12, title: 'Lumière de Provence',
+subtitle: 'Gordes baignée de soleil', surtitre: 'FRANCE · PROVENCE',
+place: 'place_apr', ambiance: 'lavande, pierre dorée, douceur',
+color: '#d4a855', status: 'DEMO',
+professionals: [Object.keys(professionals)[5], Object.keys(professionals)[3]],
+people: [
+{ id: uid('p'), name: 'Marion & Lucas', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('provence', 'printemps')
+},
+{
+id: 'wedding_may', month: 4, day: 17, title: 'Noces Bretonnes',
+subtitle: 'Granit et embruns à Dinan', surtitre: 'FRANCE · BRETAGNE',
+place: 'place_may', ambiance: 'côte, caractère, tradition',
+color: '#5a7d6b', status: 'DEMO',
+professionals: [Object.keys(professionals)[4], Object.keys(professionals)[8]],
+people: [
+{ id: uid('p'), name: 'Anaïs & Gwendal', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('cotier', 'printemps')
+},
+{
+id: 'wedding_jun', month: 5, day: 21, title: 'Solstice Corse',
+subtitle: 'Les pieds dans l\'eau turquoise', surtitre: 'FRANCE · CORSE',
+place: 'place_jun', ambiance: 'plage, méditerranée, liberté',
+color: '#4a9db5', status: 'DEMO',
+professionals: [Object.keys(professionals)[2], Object.keys(professionals)[3]],
+people: [
+{ id: uid('p'), name: 'Julia & Sébastien', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('plage', 'ete')
+},
+{
+id: 'wedding_jul', month: 6, day: 5, title: 'Château en Périgord',
+subtitle: 'Grandeur et intimité médiévale', surtitre: 'FRANCE · DORDOGNE',
+place: 'place_jul', ambiance: 'château, prestige, histoire',
+color: '#8b6b4a', status: 'DEMO',
+professionals: [Object.keys(professionals)[0], Object.keys(professionals)[7]],
+people: [
+{ id: uid('p'), name: 'Constance & Henri', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('chateau', 'ete')
+},
+{
+id: 'wedding_aug', month: 7, day: 9, title: 'Vague Basque',
+subtitle: 'L\'océan comme témoin', surtitre: 'FRANCE · PAYS BASQUE',
+place: 'place_aug', ambiance: 'océan, surf chic, gastronomie',
+color: '#3d6b7d', status: 'DEMO',
+professionals: [Object.keys(professionals)[5], Object.keys(professionals)[9]],
+people: [
+{ id: uid('p'), name: 'Inès & Xabier', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('ocean', 'ete')
+},
+{
+id: 'wedding_sep', month: 8, day: 13, title: 'Vendanges Amoureuses',
+subtitle: 'Saint-Émilion en habits d\'or', surtitre: 'FRANCE · BORDEAUX',
+place: 'place_sep', ambiance: 'vignoble, terroir, élégance bordelaise',
+color: '#7d3d4a', status: 'DEMO',
+professionals: [Object.keys(professionals)[1], Object.keys(professionals)[6]],
+people: [
+{ id: uid('p'), name: 'Charlotte & Édouard', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('vignoble', 'automne')
+},
+{
+id: 'wedding_oct', month: 9, day: 11, title: 'Automne Vosgien',
+subtitle: 'Les couleurs de Colmar', surtitre: 'FRANCE · ALSACE',
+place: 'place_oct', ambiance: 'colombages, vins chauds, féérie',
+color: '#c9874a', status: 'DEMO',
+professionals: [Object.keys(professionals)[8], Object.keys(professionals)[4]],
+people: [
+{ id: uid('p'), name: 'Fleur & Hans', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('alsace', 'automne')
+},
+{
+id: 'wedding_nov', month: 10, day: 8, title: 'Romance Romane',
+subtitle: 'L\'abbaye millénaire de Saint-Savin', surtitre: 'FRANCE · POITOU',
+place: 'place_nov', ambiance: 'patrimoine, recueillement, art roman',
+color: '#8a7d6b', status: 'DEMO',
+professionals: [Object.keys(professionals)[0], Object.keys(professionals)[2]],
+people: [
+{ id: uid('p'), name: 'Diane & Raphaël', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('patrimoine', 'automne')
+},
+{
+id: 'wedding_dec', month: 11, day: 20, title: 'Noël Alpin',
+subtitle: 'Megève sous la neige', surtitre: 'FRANCE · ALPES',
+place: 'place_dec', ambiance: 'montagne, neige, chalet, féérie',
+color: '#4a6b8d', status: 'DEMO',
+professionals: [Object.keys(professionals)[7], Object.keys(professionals)[3]],
+people: [
+{ id: uid('p'), name: 'Blanche & Gabriel', role: 'mariés', status: 'DEMO' }
+],
+hours: generateWeddingHours('montagne', 'hiver')
+}
+];
+
+// ─── HOUR GENERATION ───
+function generateWeddingHours(style, season) {
+const scenarios = {
+local: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Petit-déjeuner village','Préparatifs mariée','Préparatifs marié','Cérémonie mairie','Cortège village','Cocktail place du marché','Déjeuner traditionnel','Digestif balade','Photos village','Sieste','Goûter local','Golden hour','Apéritif','Dîner fête','Soirée bal','Feu de cheminée','Repos'],
+parisien: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Brunch parisien','Coiffeur','Maquillage','Hôtel particulier','Habillage','Cérémonie civile','Champagne','Cocktail rooftop','Déjeuner','Promenade Marais','Photos artistiques','Golden hour Seine','Apéritif','Dîner gastronomique','Soirée privée','After','Repos'],
+lac: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Balade lac','Préparatifs','Préparatifs','Cérémonie lac','Bateau','Cocktail terrasse','Déjeuner','Activités nautiques','Photos lac','Détente','Goûter','Golden hour lac','Apéritif','Dîner','Soirée','Feu d\'artifice','Repos'],
+provence: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Marché provençal','Préparatifs','Préparatifs','Cérémonie bastide','Champagne','Cocktail oliviers','Déjeuner provençal','Sieste','Photos champs','Détente piscine','Goûter','Golden hour','Apéritif','Dîner sous les étoiles','Soirée','Farandole','Repos'],
+cotier: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Petit-déjeuner','Préparatifs','Préparatifs','Cérémonie','Cortège port','Cocktail falaise','Déjeuner fruits de mer','Balade côte','Photos remparts','Détente','Crêpes','Golden hour','Apéritif cidre','Dîner','Fest-noz','Musique bretonne','Repos'],
+plage: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Baignade matinale','Préparatifs','Préparatifs','Cérémonie plage','Pieds dans l\'eau','Cocktail paillote','Déjeuner corse','Sieste plage','Photos criques','Paddle','Goûter','Golden hour','Apéritif','Dîner les pieds dans le sable','Soirée DJ','Feu sur la plage','Repos'],
+chateau: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Visite château','Préparatifs','Préparatifs','Cérémonie chapelle','Parade','Cocktail cour d\'honneur','Grand déjeuner','Sieste','Photos donjon','Jardin français','Thé','Golden hour','Apéritif médiéval','Banquet','Bal costumé','Feu de joie','Repos'],
+ocean: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Surf matinal','Préparatifs','Préparatifs','Cérémonie falaise','Photos surf','Cocktail terrasse','Déjeuner basque','Pelote basque','Photos plage','Détente','Tapas','Golden hour','Apéritif','Dîner gastronomique','Soirée','Musique basque','Repos'],
+vignoble: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Balade vignes','Préparatifs','Préparatifs','Cérémonie chai','Dégustation','Cocktail vignes','Déjeuner vigneron','Sieste','Photos vignoble','Atelier œnologie','Goûter','Golden hour','Apéritif','Dîner étoilé','Soirée','Jazz','Repos'],
+alsace: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Marché de Colmar','Préparatifs','Préparatifs','Cérémonie','Cortège','Cocktail colombages','Déjeuner alsacien','Balade vignoble','Photos villages','Kouglof','Vin chaud','Golden hour','Apéritif','Dîner','Soirée','Musique','Repos'],
+patrimoine: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Visite abbaye','Préparatifs','Préparatifs','Cérémonie abbatiale','Procession','Cocktail cloître','Déjeuner','Visite guidée','Photos fresques','Détente','Goûter','Golden hour','Apéritif','Dîner','Concert','Veillée','Repos'],
+montagne: ['Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Sommeil','Lever','Ski matinal','Préparatifs','Préparatifs','Cérémonie chalet','Luge','Cocktail terrasse','Fondue','Spa','Photos neige','Chocolat chaud','Goûter','Golden hour neige','Raclette party','Dîner','Soirée','Feu cheminée','Repos']
+};
+
+const hours = {};
+const scenario = scenarios[style] || scenarios.local;
+for (let h = 0; h < 24; h++) {
+const hasContent = !['Sommeil','Repos'].includes(scenario[h]);
+hours[h] = {
+id: uid('hour'),
+hour: h,
+label: `${h.toString().padStart(2,'0')}:00`,
+title: scenario[h],
+hasContent: hasContent,
+scenes: hasContent ? generateScene(scenario[h], style) : [],
+status: 'DEMO'
+};
+}
+return hours;
+}
+
+function generateScene(title, style) {
+return [{
+id: uid('scene'),
+title: title,
+surtitre: style.toUpperCase(),
+subtitle: '',
+chapo: `Moment clé de cette journée : ${title.toLowerCase()}. Une scène qui capture l'essence de ce mariage ${style}.`,
+blocks: [
+{ id: uid('block'), type: 'text', content: `Description détaillée de la scène « ${title} ». [CONTENU DEMO — À remplacer par le contenu éditorial réel]`, position: { x: 0, y: 0 }, size: { w: 12, h: 4 }, metadata: { source: 'DEMO', verificationStatus: 'TO_CONFIRM' }, source: 'fictional', relations: [] },
+{ id: uid('block'), type: 'image', content: '[IMAGE ILLUSTRATIVE PEXELS — Non attribuée]', position: { x: 0, y: 4 }, size: { w: 12, h: 6 }, metadata: { source: 'PEXELS', verificationStatus: 'ILLUSTRATIVE', mediaType: 'IMAGE' }, source: 'pexels', relations: [] },
+{ id: uid('block'), type: 'quote', content: `« ${title} — un instant suspendu dans le temps. »`, position: { x: 0, y: 10 }, size: { w: 8, h: 2 }, metadata: { source: 'DEMO', verificationStatus: 'TO_CONFIRM' }, source: 'fictional', relations: [] }
+],
+media: [],
+relations: [],
+status: 'DEMO'
+}];
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WORLD WEDDING MAGAZINE — ENGINE
+// ═══════════════════════════════════════════════════════════════
+
+const WMM = {
+currentView: '3d',
+currentWedding: null,
+currentMonth: 0,
+selectedCell: null,
+scene: null,
+camera: null,
+renderer: null,
+meshInstances: null,
+raycaster: null,
+mouse: null,
+animationId: null,
+
+init() {
+this.initNavigation();
+this.init3D();
+this.initGrid();
+this.initTimeline();
+this.initMap();
+this.initRelations();
+this.initMagazine();
+this.initEditor();
+this.initMonthNav();
+
+setTimeout(() => {
+document.getElementById('loading').classList.add('hidden');
+}, 2000);
+},
+
+// ─── NAVIGATION ───
+initNavigation() {
+document.querySelectorAll('.wmm-nav-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+this.switchView(btn.dataset.view);
+});
+});
+},
+
+switchView(viewName) {
+this.currentView = viewName;
+document.querySelectorAll('.wmm-nav-btn').forEach(b => b.classList.remove('active'));
+document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+document.querySelectorAll('.wmm-view').forEach(v => v.classList.remove('active'));
+document.getElementById(`view-${viewName}`).classList.add('active');
+
+if (viewName === '3d') this.onResize3D();
+if (viewName === 'relations') this.drawRelations();
+},
+
+// ─── MONTH NAV ───
+initMonthNav() {
+const nav = document.getElementById('month-nav-3d');
+nav.innerHTML = MONTHS.map((m, i) =>
+`<button class="month-nav-btn ${i===0?'active':''}" onclick="WMM.focusMonth(${i})">${m.substr(0,3)}</button>`
+).join('');
+},
+
+focusMonth(monthIndex) {
+this.currentMonth = monthIndex;
+document.querySelectorAll('.month-nav-btn').forEach((b,i) => {
+b.classList.toggle('active', i === monthIndex);
+});
+this.updateBreadcrumb(monthIndex);
+if (this.scene) {
+this.animateCameraToMonth(monthIndex);
+}
+},
+
+updateBreadcrumb(monthIndex) {
+const bc = document.getElementById('breadcrumb-3d');
+const wedding = weddings.find(w => w.month === monthIndex);
+if (wedding) {
+bc.innerHTML = `
+<span onclick="WMM.resetView()">France</span>
+<span class="sep">→</span>
+<span onclick="WMM.focusMonth(${monthIndex})">${MONTHS[monthIndex]}</span>
+<span class="sep">→</span>
+<span>${wedding.title}</span>
+`;
+}
+},
+
+resetView() {
+if (this.camera && this.controls) {
+this.controls.target.set(0, 0, 0);
+this.animateCameraTo(new THREE.Vector3(50, 40, 50), new THREE.Vector3(0, 0, 0));
+}
+document.getElementById('breadcrumb-3d').innerHTML = '<span onclick="WMM.resetView()">France</span>';
+},
+
+// ─── 3D ENGINE ───
+init3D() {
+const container = document.getElementById('view-3d');
+this.scene = new THREE.Scene();
+this.scene.background = new THREE.Color(0x1a1a2e);
+this.scene.fog = new THREE.FogExp2(0x1a1a2e, 0.008);
+
+this.camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+this.camera.position.set(50, 40, 50);
+this.camera.lookAt(0, 0, 0);
+
+this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+this.renderer.setSize(container.clientWidth, container.clientHeight);
+this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+this.renderer.shadowMap.enabled = true;
+container.insertBefore(this.renderer.domElement, container.firstChild);
+
+// Lights
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+this.scene.add(ambientLight);
+
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+dirLight.position.set(30, 50, 30);
+dirLight.castShadow = true;
+this.scene.add(dirLight);
+
+const pointLight = new THREE.PointLight(0xc9a96e, 0.8, 100);
+pointLight.position.set(0, 20, 0);
+this.scene.add(pointLight);
+
+// Grid floor
+const gridHelper = new THREE.GridHelper(100, 100, 0x2a2a3e, 0x2a2a3e);
+gridHelper.position.y = -0.5;
+this.scene.add(gridHelper);
+
+// Build 3D grid (instanced for performance)
+this.buildInstancedGrid();
+
+// Raycaster
+this.raycaster = new THREE.Raycaster();
+this.mouse = new THREE.Vector2();
+
+// Controls (simplified orbit)
+this.initControls();
+
+// Events
+container.addEventListener('click', (e) => this.on3DClick(e));
+container.addEventListener('mousemove', (e) => this.on3DMouseMove(e));
+window.addEventListener('resize', () => this.onResize3D());
+
+// Animation loop
+this.animate();
+},
+
+buildInstancedGrid() {
+// 12 months arranged in a circle, each month as a column of days
+// Each day shows 24 hours as small cubes
+const geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+const material = new THREE.MeshPhongMaterial({
+color: 0x3a3a5e,
+transparent: true,
+opacity: 0.6
+});
+
+// Total instances: 365 days × 24 hours but we'll show only days for perf
+// Actually show 365 columns (days) with height representing hours
+const dayCount = 365;
+const instancedMesh = new THREE.InstancedMesh(geometry, material, dayCount);
+instancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+
+const dummy = new THREE.Object3D();
+const colors = new Float32Array(dayCount * 3);
+let dayIndex = 0;
+
+for (let m = 0; m < 12; m++) {
+const daysInMonth = new Date(2025, m + 1, 0).getDate();
+const monthAngle = (m / 12) * Math.PI * 2;
+const monthRadius = 20;
+const baseX = Math.cos(monthAngle) * monthRadius;
+const baseZ = Math.sin(monthAngle) * monthRadius;
+
+// Check if this month has a wedding
+const wedding = weddings.find(w => w.month === m);
+
+for (let d = 0; d < daysInMonth; d++) {
+if (dayIndex >= dayCount) break;
+const isWeddingDay = wedding && d + 1 === wedding.day;
+
+dummy.position.set(
+baseX + (d % 7) * 0.8 - 2.8,
+isWeddingDay ? 5 : 0.2,
+baseZ + Math.floor(d / 7) * 0.8 - 2
+);
+
+if (isWeddingDay) {
+dummy.scale.set(1.5, 12, 1.5);
+const c = new THREE.Color(wedding.color);
+colors[dayIndex * 3] = c.r;
+colors[dayIndex * 3 + 1] = c.g;
+colors[dayIndex * 3 + 2] = c.b;
+} else {
+dummy.scale.set(1, 0.3, 1);
+colors[dayIndex * 3] = 0.15 + (m / 12) * 0.1;
+colors[dayIndex * 3 + 1] = 0.15 + (m / 12) * 0.05;
+colors[dayIndex * 3 + 2] = 0.25 + (m / 12) * 0.1;
+}
+
+dummy.updateMatrix();
+instancedMesh.setMatrixAt(dayIndex, dummy.matrix);
+dayIndex++;
+}
+}
+
+instancedMesh.instanceMatrix.needsUpdate = true;
+
+// Set colors via vertex colors
+const colorAttr = new THREE.InstancedBufferAttribute(colors, 3);
+instancedMesh.instanceColor = colorAttr;
+
+this.meshInstances = instancedMesh;
+this.scene.add(instancedMesh);
+
+// Add month labels (simplified as small spheres)
+for (let m = 0; m < 12; m++) {
+const angle = (m / 12) * Math.PI * 2;
+const radius = 26;
+const x = Math.cos(angle) * radius;
+const z = Math.sin(angle) * radius;
+
+const labelGeo = new THREE.SphereGeometry(0.5, 8, 8);
+const labelMat = new THREE.MeshPhongMaterial({ color: 0xc9a96e, emissive: 0xc9a96e, emissiveIntensity: 0.3 });
+const labelMesh = new THREE.Mesh(labelGeo, labelMat);
+labelMesh.position.set(x, 1, z);
+labelMesh.userData = { month: m, type: 'month-label' };
+this.scene.add(labelMesh);
+}
+
+// Central pillar
+const pillarGeo = new THREE.CylinderGeometry(0.3, 0.3, 10, 8);
+const pillarMat = new THREE.MeshPhongMaterial({ color: 0xc9a96e, transparent: true, opacity: 0.4 });
+const pillar = new THREE.Mesh(pillarGeo, pillarMat);
+pillar.position.y = 5;
+this.scene.add(pillar);
+},
+
+animateCameraToMonth(monthIndex) {
+const angle = (monthIndex / 12) * Math.PI * 2;
+const radius = 30;
+const targetPos = new THREE.Vector3(
+Math.cos(angle) * radius,
+15,
+Math.sin(angle) * radius
+);
+const lookAt = new THREE.Vector3(
+Math.cos(angle) * 20,
+2,
+Math.sin(angle) * 20
+);
+this.animateCameraTo(targetPos, lookAt);
+},
+
+animateCameraTo(position, target) {
+const startPos = this.camera.position.clone();
+const startTarget = this.controls.target.clone();
+const duration = 1500;
+const startTime = Date.now();
+
+const animate = () => {
+const elapsed = Date.now() - startTime;
+const t = Math.min(elapsed / duration, 1);
+const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+this.camera.position.lerpVectors(startPos, position, ease);
+this.controls.target.lerpVectors(startTarget, target, ease);
+this.controls.update();
+
+if (t < 1) requestAnimationFrame(animate);
+};
+animate();
+},
+
+initControls() {
+// Simple orbit controls implementation
+const camera = this.camera;
+const domElement = this.renderer.domElement;
+let isDragging = false;
+let previousMouse = { x: 0, y: 0 };
+let spherical = { theta: Math.atan2(camera.position.x, camera.position.z), phi: Math.acos(camera.position.y / camera.position.length()), radius: camera.position.length() };
+
+this.controls = {
+target: new THREE.Vector3(0, 0, 0),
+update() {
+const x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+const y = spherical.radius * Math.cos(spherical.phi);
+const z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+camera.position.set(
+this.target.x + x,
+this.target.y + y,
+this.target.z + z
+);
+camera.lookAt(this.target);
+}
+};
+
+domElement.addEventListener('mousedown', (e) => {
+isDragging = true;
+previousMouse = { x: e.clientX, y: e.clientY };
+});
+
+domElement.addEventListener('mousemove', (e) => {
+if (!isDragging) return;
+const dx = e.clientX - previousMouse.x;
+const dy = e.clientY - previousMouse.y;
+spherical.theta -= dx * 0.005;
+spherical.phi = Math.max(0.3, Math.min(Math.PI - 0.3, spherical.phi + dy * 0.005));
+this.controls.update();
+previousMouse = { x: e.clientX, y: e.clientY };
+});
+
+domElement.addEventListener('mouseup', () => { isDragging = false; });
+domElement.addEventListener('mouseleave', () => { isDragging = false; });
+
+domElement.addEventListener('wheel', (e) => {
+e.preventDefault();
+spherical.radius = Math.max(10, Math.min(100, spherical.radius + e.deltaY * 0.05));
+this.controls.update();
+}, { passive: false });
+
+// Touch support
+domElement.addEventListener('touchstart', (e) => {
+if (e.touches.length === 1) {
+isDragging = true;
+previousMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+}
+});
+
+domElement.addEventListener('touchmove', (e) => {
+if (!isDragging || e.touches.length !== 1) return;
+const dx = e.touches[0].clientX - previousMouse.x;
+const dy = e.touches[0].clientY - previousMouse.y;
+spherical.theta -= dx * 0.005;
+spherical.phi = Math.max(0.3, Math.min(Math.PI - 0.3, spherical.phi + dy * 0.005));
+this.controls.update();
+previousMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+});
+
+domElement.addEventListener('touchend', () => { isDragging = false; });
+},
+
+on3DClick(e) {
+const container = document.getElementById('view-3d');
+const rect = container.getBoundingClientRect();
+this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+this.raycaster.setFromCamera(this.mouse, this.camera);
+const intersects = this.raycaster.intersectObjects(this.scene.children, false);
+
+for (const hit of intersects) {
+if (hit.object.userData.type === 'month-label') {
+this.focusMonth(hit.object.userData.month);
+return;
+}
+}
+},
+
+on3DMouseMove(e) {
+// Hover effects handled in animate
+},
+
+onResize3D() {
+const container = document.getElementById('view-3d');
+if (!container || !this.camera || !this.renderer) return;
+this.camera.aspect = container.clientWidth / container.clientHeight;
+this.camera.updateProjectionMatrix();
+this.renderer.setSize(container.clientWidth, container.clientHeight);
+},
+
+animate() {
+this.animationId = requestAnimationFrame(() => this.animate());
+
+if (this.currentView !== '3d') return;
+
+// Subtle rotation of month labels
+const time = Date.now() * 0.001;
+this.scene.children.forEach(child => {
+if (child.userData && child.userData.type === 'month-label') {
+child.position.y = 1 + Math.sin(time + child.userData.month) * 0.3;
+}
+});
+
+this.renderer.render(this.scene, this.camera);
+},
+
+// ─── GRID VIEW ───
+initGrid() {
+const container = document.getElementById('grid-months');
+container.innerHTML = weddings.map((w, i) => {
+const place = places[w.place];
+const daysInMonth = new Date(2025, w.month + 1, 0).getDate();
+let daysHtml = '';
+for (let d = 1; d <= daysInMonth; d++) {
+const isWedding = d === w.day;
+daysHtml += `<div class="grid-day ${isWedding ? 'has-wedding' : ''}">${d}</div>`;
+}
+return `
+<div class="grid-month" onclick="WMM.selectWedding(${i})">
+<h3>${MONTHS[w.month]}</h3>
+<div class="wedding-title">${w.title}</div>
+<div class="wedding-place">${place.city} · ${place.region}</div>
+<div style="margin-top:8px">
+<span class="dmc-badge dmc-demo">DEMO</span>
+</div>
+<div class="grid-days">${daysHtml}</div>
+</div>
+`;
+}).join('');
+},
+
+selectWedding(index) {
+this.currentWedding = weddings[index];
+this.switchView('timeline');
+this.renderTimeline(this.currentWedding);
+},
+
+// ─── TIMELINE VIEW ───
+initTimeline() {
+this.renderTimeline(weddings[0]);
+},
+
+renderTimeline(wedding) {
+const container = document.getElementById('timeline-container');
+const subtitle = document.getElementById('timeline-subtitle');
+subtitle.textContent = `${wedding.title} — ${MONTHS[wedding.month]} ${wedding.day}, 2025`;
+
+let html = '<div class="timeline-line"></div>';
+for (let h = 0; h < 24; h++) {
+const hour = wedding.hours[h];
+html += `
+<div class="timeline-hour ${hour.hasContent ? 'has-content' : ''}" onclick="WMM.selectHour('${wedding.id}', ${h})">
+<span class="hour-label">${h.toString().padStart(2,'0')}h</span>
+<h4>${hour.title}</h4>
+${hour.hasContent ? `<p>${hour.scenes.length} scène(s) éditoriale(s) · <span class="dmc-badge dmc-demo">DEMO</span></p>` : '<p style="color:var(--text-muted);font-size:10px">—</p>'}
+</div>
+`;
+}
+container.innerHTML = html;
+},
+
+selectHour(weddingId, hourIndex) {
+const wedding = weddings.find(w => w.id === weddingId);
+if (!wedding) return;
+const hour = wedding.hours[hourIndex];
+if (!hour || !hour.hasContent) return;
+
+// Show scene info
+const info = document.getElementById('cell-info');
+document.getElementById('cell-info-title').textContent = `${MONTHS[wedding.month]} · ${hour.label} — ${hour.title}`;
+document.getElementById('cell-info-desc').textContent = hour.scenes.map(s => s.chapo).join('\n');
+info.classList.add('visible');
+
+// Also open editor with this scene
+this.switchView('editor');
+this.loadSceneInEditor(wedding, hourIndex, 0);
+},
+
+// ─── MAP VIEW ───
+initMap() {
+const svg = document.getElementById('map-svg');
+// Simplified France outline
+const francePath = `M 280 80 L 320 100 L 350 120 L 380 140 L 400 180 L 420 220 L 430 260 L 440 300 L 420 340 L 400 380 L 370 410 L 340 440 L 310 460 L 280 480 L 250 490 L 220 480 L 190 460 L 170 430 L 150 400 L 140 370 L 130 340 L 140 300 L 150 260 L 170 220 L 190 180 L 210 140 L 240 110 Z`;
+
+let svgContent = `<path d="${francePath}" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.4"/>`;
+
+// Map France coordinates to SVG viewBox (approximate)
+const mapBounds = { minLat: 41.3, maxLat: 51.1, minLng: -5.1, maxLng: 9.6 };
+
+weddings.forEach((w, i) => {
+const place = places[w.place];
+const x = ((place.lng - mapBounds.minLng) / (mapBounds.maxLng - mapBounds.minLng)) * 500 + 50;
+const y = ((mapBounds.maxLat - place.lat) / (mapBounds.maxLat - mapBounds.minLat)) * 500 + 50;
+
+svgContent += `
+<g class="map-marker" onclick="WMM.selectWedding(${i})" data-index="${i}">
+<circle cx="${x}" cy="${y}" r="6" fill="${w.color}" stroke="#fff" stroke-width="1.5" opacity="0.9"/>
+<text x="${x}" y="${y - 12}" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="Georgia">${MONTHS[w.month].substr(0,3)}</text>
+<text x="${x}" y="${y + 18}" text-anchor="middle" fill="#4a4a5a" font-size="8" font-family="Georgia">${place.city}</text>
+</g>
+`;
+});
+
+// Title
+svgContent += `<text x="300" y="40" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="Georgia" letter-spacing="3">CARTE ÉDITORIALE — FRANCE 2025</text>`;
+svgContent += `<text x="300" y="56" text-anchor="middle" fill="#8a8a9a" font-size="9" font-family="Georgia">12 mariages démonstrateurs · Données fictives DEMO</text>`;
+
+svg.innerHTML = svgContent;
+},
+
+// ─── RELATIONS VIEW ───
+initRelations() {
+setTimeout(() => this.drawRelations(), 500);
+},
+
+drawRelations() {
+const canvas = document.getElementById('relations-canvas');
+if (!canvas) return;
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.parentElement.clientWidth;
+canvas.height = canvas.parentElement.clientHeight;
+
+const w = canvas.width;
+const h = canvas.height;
+const cx = w / 2;
+const cy = h / 2;
+
+ctx.fillStyle = '#fafaf8';
+ctx.fillRect(0, 0, w, h);
+
+// Title
+ctx.fillStyle = '#1a1a2e';
+ctx.font = '12px Georgia';
+ctx.textAlign = 'center';
+ctx.fillText('GRAPHE DE RELATIONS — 12 MARIAGES DEMO', cx, 30);
+
+// Draw nodes
+const nodes = [];
+const centerRadius = Math.min(w, h) * 0.3;
+
+// Weddings in circle
+weddings.forEach((wed, i) => {
+const angle = (i / 12) * Math.PI * 2 - Math.PI / 2;
+const x = cx + Math.cos(angle) * centerRadius;
+const y = cy + Math.sin(angle) * centerRadius;
+nodes.push({ x, y, type: 'wedding', data: wed, angle });
+});
+
+// Draw connections
+ctx.strokeStyle = 'rgba(201,169,110,0.15)';
+ctx.lineWidth = 0.5;
+
+// Connect weddings to center
+nodes.forEach(n => {
+ctx.beginPath();
+ctx.moveTo(cx, cy);
+ctx.lineTo(n.x, n.y);
+ctx.stroke();
+});
+
+// Connect adjacent weddings
+for (let i = 0; i < nodes.length; i++) {
+const next = nodes[(i + 1) % nodes.length];
+ctx.beginPath();
+ctx.moveTo(nodes[i].x, nodes[i].y);
+ctx.lineTo(next.x, next.y);
+ctx.stroke();
+}
+
+// Draw professionals around
+const profKeys = Object.keys(professionals);
+profKeys.forEach((key, i) => {
+const prof = professionals[key];
+const angle = (i / profKeys.length) * Math.PI * 2;
+const pr = centerRadius * 1.5;
+const x = cx + Math.cos(angle) * pr;
+const y = cy + Math.sin(angle) * pr;
+
+// Connect to weddings that use this professional
+weddings.forEach((wed, wi) => {
+if (wed.professionals && wed.professionals.includes(key)) {
+ctx.strokeStyle = 'rgba(135,196,196,0.2)';
+ctx.lineWidth = 0.5;
+ctx.beginPath();
+ctx.moveTo(nodes[wi].x, nodes[wi].y);
+ctx.lineTo(x, y);
+ctx.stroke();
+}
+});
+
+// Draw professional node
+ctx.fillStyle = DMC.PROFESSIONAL;
+ctx.beginPath();
+ctx.arc(x, y, 4, 0, Math.PI * 2);
+ctx.fill();
+
+ctx.fillStyle = '#4a4a5a';
+ctx.font = '8px Georgia';
+ctx.textAlign = 'center';
+ctx.fillText(prof.name.split(' ')[0], x, y + 14);
+});
+
+// Draw center
+ctx.fillStyle = '#c9a96e';
+ctx.beginPath();
+ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+ctx.fill();
+ctx.fillStyle = '#fff';
+ctx.font = '8px Georgia';
+ctx.fillText('FRANCE', cx, cy + 3);
+
+// Draw wedding nodes
+nodes.forEach((n, i) => {
+ctx.fillStyle = n.data.color;
+ctx.beginPath();
+ctx.arc(n.x, n.y, 8, 0, Math.PI * 2);
+ctx.fill();
+
+ctx.fillStyle = '#fff';
+ctx.font = '7px Georgia';
+ctx.textAlign = 'center';
+ctx.fillText(MONTHS[i].substr(0, 3), n.x, n.y + 3);
+});
+},
+
+// ─── MAGAZINE VIEW ───
+initMagazine() {
+this.renderMagazine(weddings[6]); // Default to July (château)
+},
+
+renderMagazine(wedding) {
+const place = places[wedding.place];
+const content = document.getElementById('magazine-content');
+
+content.innerHTML = `
+<div class="mag-hero">
+<div>
+<div class="mag-hero-kicker">${wedding.surtitre} · ${MONTHS[wedding.month].toUpperCase()} 2025</div>
+<h1>${wedding.title}</h1>
+<p class="subtitle">${wedding.subtitle}</p>
+<div style="margin-top:20px"><span class="dmc-badge dmc-demo">CONTENU DÉMONSTRATEUR</span></div>
+</div>
+</div>
+
+<div class="mag-section">
+<div class="mag-surtitre">Destination</div>
+<h2 class="mag-title">${place.name}</h2>
+<p class="mag-chapo">${place.city}, ${place.region}. Un lieu qui incarne l'art de vivre français dans toute sa splendeur. Ce mariage fictif illustre les possibilités éditoriales du World Wedding Magazine.</p>
+<div class="mag-body">
+<p>Le ${wedding.day} ${MONTHS[wedding.month].toLowerCase()} 2025, ${wedding.people[0].name} se sont unis dans un cadre d'exception. ${wedding.ambiance.split(', ').map(a => a.charAt(0).toUpperCase() + a.slice(1)).join(', ')} — chaque détail raconte une histoire.</p>
+<p>Ce récit éditorial explore les 24 heures de cette journée, de l'aube au crépuscule, en passant par chaque instant qui fait la singularité d'un mariage français.</p>
+</div>
+</div>
+
+<div class="mag-quote">
+« Le mariage n'est pas un événement, c'est un territoire que l'on explore heure par heure. »
+</div>
+
+<div class="mag-section">
+<div class="mag-surtitre">Programme de la journée</div>
+<h2 class="mag-title">24 Heures</h2>
+<div class="mag-programme">
+<h3>Déroulé éditorial</h3>
+${Object.values(wedding.hours).filter(h => h.hasContent).map(h => `
+<div class="mag-programme-item">
+<span class="time">${h.label}</span>
+<span>${h.title}</span>
+</div>
+`).join('')}
+</div>
+</div>
+
+<div class="mag-section">
+<div class="mag-surtitre">Galerie</div>
+<h2 class="mag-title">Moments Capturés</h2>
+<div class="mag-gallery">
+${Array.from({length: 9}, (_, i) => `<div class="mag-gallery-item">Image ${i+1}<br><small>DEMO</small></div>`).join('')}
+</div>
+</div>
+
+<div class="mag-section">
+<div class="mag-surtitre">Territoire</div>
+<h2 class="mag-title">${place.region}</h2>
+<div class="mag-body">
+<p>${place.city} fait partie de ces territoires français qui offrent un cadre unique pour célébrer l'amour. ${place.region} possède une identité forte, un patrimoine riche et un art de vivre qui se transmet de génération en génération.</p>
+</div>
+<div class="mag-info-box">
+<h4>Informations pratiques</h4>
+<p><strong>Lieu :</strong> ${place.name}<br>
+<strong>Ville :</strong> ${place.city}<br>
+<strong>Région :</strong> ${place.region}<br>
+<strong>Coordonnées :</strong> ${place.lat.toFixed(4)}°N, ${place.lng.toFixed(4)}°E<br>
+<strong>Statut :</strong> <span class="dmc-badge dmc-demo">DEMO — Données fictives</span></p>
+</div>
+</div>
+
+<div class="mag-section">
+<div class="mag-surtitre">Professionnels</div>
+<h2 class="mag-title">L'Équipe</h2>
+<div class="mag-body">
+${wedding.professionals.map(pKey => {
+const prof = professionals[pKey];
+return prof ? `<p><span class="dmc-badge dmc-professional">${prof.type}</span> ${prof.name} — ${prof.city}</p>` : '';
+}).join('')}
+</div>
+</div>
+
+<div class="mag-section" style="text-align:center; padding: 40px 0; border-top: 1px solid var(--border);">
+<p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted);">World Wedding Magazine — France — Édition 2025</p>
+<p style="font-size:10px; color:var(--text-muted); margin-top:8px;">Contenu démonstrateur · Toutes les données sont fictives</p>
+</div>
+`;
+},
+
+// ─── EDITOR ───
+initEditor() {
+this.renderEditorTree();
+},
+
+renderEditorTree() {
+const tree = document.getElementById('editor-tree');
+let html = '<h3>Arbre Éditorial</h3>';
+
+html += '<div style="margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.4)">World → France → 2025</div>';
+
+weddings.forEach((w, wi) => {
+html += `<div class="editor-tree-item level-1" onclick="WMM.expandWedding(${wi}, this)">${MONTHS[w.month]} — ${w.title}</div>`;
+html += `<div id="tree-wedding-${wi}" style="display:none">`;
+
+Object.values(w.hours).filter(h => h.hasContent).forEach((h, hi) => {
+html += `<div class="editor-tree-item level-2" onclick="WMM.loadSceneInEditor(weddings[${wi}], ${h.hour}, 0)">${h.label} ${h.title}</div>`;
+});
+
+html += '</div>';
+});
+
+tree.innerHTML = html;
+},
+
+expandWedding(index, el) {
+const div = document.getElementById(`tree-wedding-${index}`);
+div.style.display = div.style.display === 'none' ? 'block' : 'none';
+
+document.querySelectorAll('.editor-tree-item').forEach(item => item.classList.remove('selected'));
+el.classList.add('selected');
+},
+
+loadSceneInEditor(wedding, hourIndex, sceneIndex) {
+const hour = wedding.hours[hourIndex];
+if (!hour || !hour.hasContent || !hour.scenes[sceneIndex]) return;
+
+const scene = hour.scenes[sceneIndex];
+const canvas = document.getElementById('editor-canvas');
+
+canvas.innerHTML = `
+<div style="margin-bottom:20px">
+<span class="dmc-badge dmc-demo">DEMO</span>
+<span style="font-size:11px;color:var(--text-muted);margin-left:8px">${wedding.title} → ${hour.label} → Scène 1</span>
+</div>
+
+<div class="editor-field">
+<label>Surtitre <span class="dmc-badge dmc-text">TEXT</span></label>
+<input type="text" value="${scene.surtitre}" onchange="WMM.updateField(${JSON.stringify(wedding.id)}, ${hourIndex}, ${sceneIndex}, 'surtitre', this.value)">
+</div>
+
+<div class="editor-field">
+<label>Titre <span class="dmc-badge dmc-text">TEXT</span></label>
+<input type="text" value="${scene.title}" onchange="WMM.updateField(${JSON.stringify(wedding.id)}, ${hourIndex}, ${sceneIndex}, 'title', this.value)">
+</div>
+
+<div class="editor-field">
+<label>Chapô <span class="dmc-badge dmc-text">TEXT</span></label>
+<textarea onchange="WMM.updateField(${JSON.stringify(wedding.id)}, ${hourIndex}, ${sceneIndex}, 'chapo', this.value)">${scene.chapo}</textarea>
+</div>
+
+<div class="editor-field">
+<label>Blocs de contenu</label>
+${scene.blocks.map((block, bi) => `
+<div style="background:#fff;border:1px solid var(--border);border-radius:4px;padding:12px;margin-bottom:8px;border-left:3px solid ${DMC[block.type.toUpperCase()] || '#ccc'}">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+<span class="dmc-badge dmc-${block.type}">${block.type.toUpperCase()}</span>
+<span style="font-size:9px;color:var(--text-muted)">${block.metadata.verificationStatus}</span>
+</div>
+<textarea style="width:100%;border:1px solid var(--border);padding:8px;border-radius:3px;font-family:inherit;font-size:12px;min-height:60px"
+onchange="WMM.updateBlock(${JSON.stringify(wedding.id)}, ${hourIndex}, ${sceneIndex}, ${bi}, this.value)">${block.content}</textarea>
+</div>
+`).join('')}
+</div>
+
+<div class="editor-field">
+<label>Lieu associé <span class="dmc-badge dmc-place">PLACE</span></label>
+<input type="text" value="${places[wedding.place].name} — ${places[wedding.place].city}" readonly style="background:var(--bg-secondary)">
+</div>
+
+<div class="editor-field">
+<label>Professionnels <span class="dmc-badge dmc-professional">PRO</span></label>
+${wedding.professionals.map(pk => {
+const p = professionals[pk];
+return p ? `<div style="padding:4px 0;font-size:12px">${p.type} — ${p.name}</div>` : '';
+}).join('')}
+</div>
+`;
+
+// Update preview
+this.updateEditorPreview(scene);
+},
+
+updateField(weddingId, hourIndex, sceneIndex, field, value) {
+const wedding = weddings.find(w => w.id === weddingId);
+if (!wedding) return;
+const scene = wedding.hours[hourIndex].scenes[sceneIndex];
+if (!scene) return;
+scene[field] = value;
+console.log(`[WMM] Updated: ${wedding.title} → H${hourIndex} → Scene → ${field} = "${value}"`);
+},
+
+updateBlock(weddingId, hourIndex, sceneIndex, blockIndex, value) {
+const wedding = weddings.find(w => w.id === weddingId);
+if (!wedding) return;
+const block = wedding.hours[hourIndex].scenes[sceneIndex].blocks[blockIndex];
+if (!block) return;
+block.content = value;
+console.log(`[WMM] Updated block: ${wedding.title} → H${hourIndex} → Block ${blockIndex}`);
+},
+
+updateEditorPreview(scene) {
+const preview = document.getElementById('editor-preview-content');
+preview.innerHTML = `
+<div style="border:1px solid var(--border);padding:16px;border-radius:4px;background:var(--bg-primary)">
+<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px">${scene.surtitre}</div>
+<h3 style="font-size:16px;font-weight:400;margin-bottom:8px">${scene.title}</h3>
+<p style="font-size:11px;line-height:1.6;color:var(--text-secondary);font-style:italic">${scene.chapo}</p>
+${scene.blocks.map(b => {
+if (b.type === 'text') return `<p style="font-size:11px;line-height:1.5;margin-top:8px;color:var(--text-secondary)">${b.content}</p>`;
+if (b.type === 'image') return `<div style="background:var(--bg-secondary);height:60px;border-radius:3px;margin-top:8px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text-muted)">📷 Image</div>`;
+if (b.type === 'quote') return `<blockquote style="font-style:italic;border-left:2px solid var(--gold);padding-left:8px;margin-top:8px;font-size:11px;color:var(--text-secondary)">${b.content}</blockquote>`;
+return '';
+}).join('')}
+</div>
+`;
+},
+
+editorSave() {
+console.log('[WMM] Data saved to memory. Ready for future persistence layer.');
+// In production, this would call an API
+alert('Modifications enregistrées dans la source de vérité.');
+},
+
+editorPreview() {
+this.switchView('magazine');
+if (this.currentWedding) {
+this.renderMagazine(this.currentWedding);
+}
+}
+};
+
+// ─── INITIALIZATION ───
+window.addEventListener('DOMContentLoaded', () => {
+WMM.init();
+});
+
+// Resize handler for relations canvas
+window.addEventListener('resize', () => {
+if (WMM.currentView === 'relations') {
+WMM.drawRelations();
+}
+});
+</script>
+<script src="/editor-bridge.js"></script>
+</body>
+</html>

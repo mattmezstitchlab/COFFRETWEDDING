@@ -1,0 +1,11 @@
+{
+  "file": "world-wedding-original.html",
+  "sha256": "21bf8648ac0b0e27e9b9ab03135c3fc6f582a230ff9f89199f5f1a7119c28411",
+  "originalBytes": 62721,
+  "originalEditions": 12,
+  "originalYear": 2025,
+  "activeYear": 2026,
+  "activeCoffrets": 365,
+  "momentsPerCoffret": 24,
+  "adapter": "editor-bridge.js"
+}
